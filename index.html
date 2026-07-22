@@ -1,147 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Modern Web Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Hub</title>
+    <style>
+        :root {
+            --ink: #1f1112;
+            --muted: #7a5f63;
+            --accent: #d7263d;
+            --accent-soft: #ffe8eb;
+            --accent-dark: #8f1228;
+            --white: #ffffff;
+            --panel: #fffafc;
+        }
 
-<style>
+        * { box-sizing: border-box; }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f2f2f2;
-}
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top left, #ffe7ea 0%, #ffd2d9 25%, #ffffff 55%, #fff1f3 100%);
+            color: var(--ink);
+            padding: 24px;
+        }
 
-header{
-background:#0066cc;
-color:white;
-text-align:center;
-padding:20px;
-}
+        .page-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(120, 18, 40, 0.18);
+            border: 1px solid rgba(215, 38, 61, 0.12);
+        }
 
-nav{
-background:#003366;
-padding:15px;
-text-align:center;
-}
+        header {
+            background: linear-gradient(135deg, #2a0c10 0%, var(--accent) 55%, #ff5f72 100%);
+            color: var(--white);
+            padding: 42px 36px 32px;
+        }
 
-nav a{
-color:white;
-text-decoration:none;
-margin:20px;
-font-size:18px;
-font-weight:bold;
-}
+        header h1 { margin: 0 0 10px; font-size: 2.3rem; }
+        header p { margin: 0; max-width: 760px; line-height: 1.7; color: rgba(255,255,255,0.92); }
 
-nav a:hover{
-color:yellow;
-}
+        nav {
+            background: rgba(33, 10, 14, 0.95);
+            padding: 15px 36px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
-section{
-width:80%;
-margin:30px auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
-}
+        nav a { color: var(--white); text-decoration: none; font-weight: 700; transition: color 0.2s ease; }
+        nav a:hover { color: #ffb4bf; }
 
-video{
-width:70%;
-display:block;
-margin:auto;
-}
+        main { padding: 28px 36px 36px; display: grid; gap: 24px; }
 
-pre{
-background:#eeeeee;
-padding:15px;
-border-radius:5px;
-}
+        .panel, .auth-card {
+            background: var(--panel);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(215, 38, 61, 0.14);
+            box-shadow: 0 18px 40px rgba(120, 18, 40, 0.10);
+            transform: perspective(1000px) rotateX(1deg);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
 
-footer{
-background:#0066cc;
-color:white;
-text-align:center;
-padding:15px;
-margin-top:30px;
-}
+        .panel:hover, .auth-card:hover { transform: perspective(1000px) rotateX(0deg) translateY(-4px); box-shadow: 0 24px 48px rgba(120, 18, 40, 0.16); }
 
-</style>
+        .auth-card { display: grid; gap: 14px; }
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.06em;
+        }
 
+        .field { display: grid; gap: 6px; }
+        label { font-weight: 700; color: var(--ink); }
+        input {
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #f4d5dc;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--white);
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(215, 38, 61, 0.16);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(215, 38, 61, 0.24); }
+        .message { min-height: 24px; color: var(--accent); font-weight: 600; }
+        .dashboard {
+            opacity: 0;
+            transform: translateY(24px) scale(0.97);
+            transition: all 0.6s ease;
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+        }
+        .dashboard.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            max-height: 2400px;
+            padding: 24px;
+        }
+        .hero-video { display: grid; gap: 14px; }
+        video { width: 100%; border-radius: 18px; display: block; box-shadow: 0 14px 26px rgba(120, 18, 40, 0.14); }
+        .cards { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin-top: 8px; }
+        .card-item { padding: 14px; border-radius: 16px; background: linear-gradient(180deg, #fff7f8, #ffeef1); border: 1px solid rgba(215, 38, 61, 0.12); }
+        .card-item strong { color: var(--accent); display: block; margin-bottom: 5px; }
+        .link-btn { display: inline-block; margin-top: 10px; text-decoration: none; color: var(--accent); font-weight: 700; }
+
+        footer { padding: 20px 36px 30px; text-align: center; color: var(--muted); }
+
+        @media (max-width: 860px) {
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="page-shell">
+        <header>
+            <h1>Trusted startup space for founders and freelancers</h1>
+            <p>Clients can entrust their ideas with confidence, while freelancers can grow, collaborate, and earn by offering their skills in a modern professional marketplace.</p>
+        </header>
 
-<header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="registration.html">Register</a>
+            <a href="chat.html">Community Chat</a>
+        </nav>
 
-<h1>Modern Startup Web Application</h1>
+        <main>
+            <section class="auth-card">
+                <div class="eyebrow">Secure Login</div>
+                <h2>Access the private startup workspace</h2>
+                <form id="loginForm">
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div id="loginMessage" class="message">Enter your details to unlock the workspace.</div>
+            </section>
 
-</header>
+            <section id="dashboard" class="panel dashboard">
+                <div class="hero-video">
+                    <h3>Welcome back — your premium workspace is ready</h3>
+                    <video controls autoplay muted>
+                        <source src="promo.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
 
-<nav>
+                <div class="cards">
+                    <div class="card-item">
+                        <strong>Openings</strong>
+                        UI/UX roles, frontend builds, content strategy, and founder support jobs.
+                    </div>
+                    <div class="card-item">
+                        <strong>Startup Ideas</strong>
+                        New ideas for learning hubs, AI tools, creator platforms, and social communities.
+                    </div>
+                    <div class="card-item">
+                        <strong>Freelancing</strong>
+                        Flexible projects for designers, developers, writers, and marketers.
+                    </div>
+                </div>
 
-<a href="index.html">Home</a>
+                <a class="link-btn" href="chat.html">Continue to community chat</a>
+            </section>
+        </main>
 
-<a href="registration.html">Register</a>
+        <footer>© 2026 Startup Hub</footer>
+    </div>
 
-</nav>
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginMessage = document.getElementById('loginMessage');
+        const dashboard = document.getElementById('dashboard');
 
-<section>
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
 
-<h2>Promotional Video</h2>
+            if (!email || !password) {
+                loginMessage.textContent = 'Please enter both your email and password.';
+                return;
+            }
 
-<video controls>
-
-<source src="promo.mp4" type="video/mp4">
-
-Your browser does not support HTML5 video.
-
-</video>
-
-</section>
-
-<section>
-
-<h2>XML Configuration</h2>
-
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;configuration&gt;
-   &lt;server&gt;localhost&lt;/server&gt;
-   &lt;port&gt;8080&lt;/port&gt;
-   &lt;database&gt;StartupDB&lt;/database&gt;
-&lt;/configuration&gt;
-</pre>
-
-<h3>XML Rules</h3>
-
-<p>✔ Every opening tag must have a closing tag.</p>
-<p>✔ Tags must be properly nested.</p>
-<p>✔ Attribute values must be enclosed in quotes.</p>
-<p>✔ XML must contain only one root element.</p>
-
-</section>
-
-<section>
-
-<h2>Web Communication Protocol</h2>
-
-<p>
-
-This web application communicates using
-
-<b>HTTPS (HyperText Transfer Protocol Secure)</b>
-
-to securely exchange information between the client and the server.
-
-</p>
-
-</section>
-
-<footer>
-
-© 2026 Modern Startup Web Application
-
-</footer>
-
+            loginMessage.textContent = `Welcome ${email}. Your workspace is loading...`;
+            dashboard.classList.add('show');
+            setTimeout(() => {
+                dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 220);
+        });
+    </script>
 </body>
 </html>

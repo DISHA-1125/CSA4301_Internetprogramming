@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Chat - Startup Hub</title>
+  <style>
+    :root { --bg:#fff8f9; --panel:#ffffff; --text:#241113; --muted:#7a5f63; --accent:#d7263d; --accent-2:#8f1228; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Segoe UI, sans-serif; background:linear-gradient(135deg,#fff1f3 0%,#ffe8eb 45%,#ffffff 100%); color:var(--text); }
+    .topbar { display:flex; justify-content:space-between; padding:18px 24px; background:rgba(33,10,14,.96); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .nav a { color:#fff; text-decoration:none; font-weight:700; transition:color 0.2s ease; }
+    .nav a:hover { color:#ffb4bf; }
+    .shell { max-width:1180px; margin:0 auto; padding:24px; }
+    .intro-card { background:linear-gradient(180deg,#fffafc 0%,#fff 100%); border:1px solid rgba(215,38,61,.12); border-radius:22px; padding:18px; margin-bottom:16px; box-shadow:0 18px 40px rgba(120,18,40,.08); transform:perspective(1000px) rotateX(1deg); }
+    .join-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .join-row input { flex:1; min-width:220px; padding:10px 12px; border-radius:999px; border:1px solid #f4d5dc; background:#fff; color:var(--text); }
+    .join-row button { border:none; border-radius:999px; padding:10px 14px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:white; font-weight:700; cursor:pointer; box-shadow:0 10px 20px rgba(215,38,61,.16); }
+    .chat-box { display:grid; grid-template-columns:310px 1fr; border-radius:24px; overflow:hidden; border:1px solid rgba(215,38,61,.12); background:#fff; box-shadow:0 24px 50px rgba(120,18,40,.12); }
+    .sidebar { background:linear-gradient(180deg,#fff7f8 0%,#ffeef1 100%); padding:16px; border-right:1px solid rgba(215,38,61,.12); }
+    .contact { display:flex; align-items:center; gap:10px; padding:10px; border-radius:12px; margin-bottom:8px; cursor:pointer; background:#fff; border:1px solid rgba(215,38,61,.08); transition:transform .2s ease, box-shadow .2s ease; }
+    .contact:hover { transform:translateY(-2px); box-shadow:0 10px 18px rgba(120,18,40,.08); }
+    .avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; }
+    .contact-name { font-weight:700; color:var(--text); }
+    .contact-role { color:var(--muted); font-size:.9rem; }
+    .main { display:flex; flex-direction:column; height:620px; }
+    .chat-header { padding:16px 20px; border-bottom:1px solid rgba(215,38,61,.12); display:flex; align-items:center; gap:10px; background:#fffafc; }
+    .messages { flex:1; padding:18px; overflow:auto; display:flex; flex-direction:column; gap:10px; background:linear-gradient(180deg, rgba(255,245,247,.9), rgba(255,255,255,1)); }
+    .bubble { max-width:72%; padding:10px 12px; border-radius:16px; line-height:1.5; animation: pop .35s ease; }
+    .bubble.in { background:#fff2f4; align-self:flex-start; border-bottom-left-radius:6px; color:#4f3338; }
+    .bubble.out { background:linear-gradient(135deg,var(--accent),var(--accent-2)); align-self:flex-end; border-bottom-right-radius:6px; color:white; }
+    .composer { display:flex; gap:10px; padding:14px; border-top:1px solid rgba(215,38,61,.12); background:#fff; }
+    .composer input { flex:1; padding:12px 14px; border-radius:999px; border:1px solid #f4d5dc; background:#fff; color:var(--text); }
+    .composer button { border:none; border-radius:999px; padding:10px 14px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:white; font-weight:700; cursor:pointer; }
+    .notice { color:var(--accent); margin-top:8px; font-weight:700; }
+    @keyframes pop { from { transform:translateY(8px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    @media (max-width:900px){ .chat-box{grid-template-columns:1fr;} .sidebar{border-right:none;border-bottom:1px solid rgba(215,38,61,.12);} }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>Startup Hub</h2>
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="registration.html">Register</a>
+      <a href="chat.html">Community Chat</a>
+    </div>
+  </div>
+  <div class="shell">
+    <div class="intro-card">
+      <h3>Join the community chat</h3>
+      <p>Add your email to invite yourself into the startup network, then start chatting with founders and freelancers.</p>
+      <form id="joinForm" class="join-row">
+        <input id="joinEmail" type="email" placeholder="Enter your email" required />
+        <button type="submit">Add Me</button>
+      </form>
+      <div id="joinNotice" class="notice">Your email will be added to the community list.</div>
+    </div>
+
+    <div class="chat-box">
+      <div class="sidebar" id="sidebar">
+        <div class="contact"><div class="avatar">A</div><div><div class="contact-name">Ava</div><div class="contact-role">UI designer</div></div></div>
+        <div class="contact"><div class="avatar">N</div><div><div class="contact-name">Noah</div><div class="contact-role">Developer</div></div></div>
+        <div class="contact"><div class="avatar">M</div><div><div class="contact-name">Mina</div><div class="contact-role">Founder</div></div></div>
+      </div>
+      <div class="main">
+        <div class="chat-header" id="chatHeader">
+          <div class="avatar" id="headerAvatar">A</div>
+          <div>
+            <strong id="headerName">Ava</strong><br /><span style="color:var(--muted);font-size:.9rem">Online now</span>
+          </div>
+        </div>
+        <div class="messages" id="messages">
+          <div class="bubble in">Hey! I’m looking for someone to help with a premium landing page.</div>
+          <div class="bubble out">I can help with the layout and feel.</div>
+        </div>
+        <form class="composer" id="chatForm">
+          <input id="msgInput" type="text" placeholder="Message..." required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    const joinForm=document.getElementById('joinForm');
+    const joinEmail=document.getElementById('joinEmail');
+    const joinNotice=document.getElementById('joinNotice');
+    const form=document.getElementById('chatForm');
+    const input=document.getElementById('msgInput');
+    const messages=document.getElementById('messages');
+    const sidebar=document.getElementById('sidebar');
+    const headerName=document.getElementById('headerName');
+    const headerAvatar=document.getElementById('headerAvatar');
+
+    function formatName(email) {
+      const localPart = email.split('@')[0] || email;
+      return localPart
+        .replace(/[^a-zA-Z0-9]+/g, ' ')
+        .trim()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
+
+    function addIncomingReply(name, text, delay) {
+      setTimeout(() => {
+        const bubble=document.createElement('div');
+        bubble.className='bubble in';
+        bubble.textContent=`${name}: ${text}`;
+        messages.appendChild(bubble);
+        messages.scrollTop=messages.scrollHeight;
+      }, delay);
+    }
+
+    joinForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const email=joinEmail.value.trim();
+      if(!email) return;
+      const name=formatName(email);
+      const contact=document.createElement('div');
+      contact.className='contact';
+      const initial=name.charAt(0).toUpperCase();
+      contact.innerHTML=`<div class="avatar">${initial}</div><div><div class="contact-name">${name}</div><div class="contact-role">Joined now</div></div>`;
+      sidebar.appendChild(contact);
+      headerName.textContent=name;
+      headerAvatar.textContent=initial;
+      joinNotice.textContent=`${name} added to the community chat.`;
+      joinEmail.value='';
+    });
+
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      if(!input.value.trim()) return;
+      const bubble=document.createElement('div');
+      bubble.className='bubble out';
+      bubble.textContent=input.value.trim();
+      messages.appendChild(bubble);
+      input.value='';
+      messages.scrollTop=messages.scrollHeight;
+
+      const replies = [
+        { name: 'Ava', text: 'That sounds strong. I can help shape the brand voice and layout.' },
+        { name: 'Noah', text: 'I can support the build and make this feel faster and cleaner.' },
+        { name: 'Mina', text: 'This could be a great startup launch if we define the offer clearly.' },
+        { name: 'Riya', text: 'I would suggest a simple launch plan with one premium landing page first.' }
+      ];
+
+      replies.forEach((reply, index) => {
+        addIncomingReply(reply.name, reply.text, 700 + index * 900);
+      });
+    });
+  </script>
+</body>
+</html>

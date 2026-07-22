@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs - Startup Hub</title>
+  <style>
+    :root { --bg:#040816; --panel:#0b1224; --text:#f8fafc; --muted:#94a3b8; --accent:#60a5fa; --accent-2:#8b5cf6; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Segoe UI, sans-serif; background:linear-gradient(135deg,#040816 0%,#0b132a 100%); color:var(--text); }
+    .topbar { display:flex; justify-content:space-between; padding:18px 24px; background:rgba(4,8,22,.95); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .nav a { color:#dbeafe; text-decoration:none; font-weight:700; }
+    .nav a:hover { color:var(--accent); }
+    .shell { max-width:1100px; margin:0 auto; padding:24px; }
+    .hero { background:linear-gradient(135deg,#101a31,#0d1528); border-radius:22px; padding:24px; border:1px solid rgba(255,255,255,.08); margin-bottom:20px; }
+    .grid { display:grid; gap:16px; }
+    .job-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px; }
+    .job-card h3 { margin:0 0 8px; color:#93c5fd; }
+    .job-card p { color:var(--muted); line-height:1.6; }
+    .apply { display:inline-block; margin-top:10px; padding:10px 14px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:white; font-weight:700; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>Startup Hub</h2>
+    <div class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="startups.html">Startups</a>
+      <a href="chat.html">Community Chat</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </div>
+  <div class="shell">
+    <div class="hero">
+      <h1>Available freelance and startup jobs</h1>
+      <p>Browse opportunities curated for founders, creatives, developers, and ambitious freelancers.</p>
+    </div>
+    <div class="grid">
+      <div class="job-card">
+        <h3>Product Designer</h3>
+        <p>Need a designer to create a premium app interface and mobile-first onboarding experience.</p>
+        <a class="apply" href="#">Apply Now</a>
+      </div>
+      <div class="job-card">
+        <h3>Web Developer</h3>
+        <p>Build a modern, responsive platform for a community-centered startup launch.</p>
+        <a class="apply" href="#">Apply Now</a>
+      </div>
+      <div class="job-card">
+        <h3>Marketing Specialist</h3>
+        <p>Support a founder with launch strategy, campaign stories, and social content.</p>
+        <a class="apply" href="#">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

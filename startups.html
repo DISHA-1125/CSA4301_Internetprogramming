@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startups - Startup Hub</title>
+  <style>
+    :root { --bg:#040816; --panel:#0b1224; --text:#f8fafc; --muted:#94a3b8; --accent:#60a5fa; --accent-2:#8b5cf6; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Segoe UI, sans-serif; background:linear-gradient(135deg,#040816 0%,#0b132a 100%); color:var(--text); }
+    .topbar { display:flex; justify-content:space-between; padding:18px 24px; background:rgba(4,8,22,.95); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .nav a { color:#dbeafe; text-decoration:none; font-weight:700; }
+    .nav a:hover { color:var(--accent); }
+    .shell { max-width:1100px; margin:0 auto; padding:24px; display:grid; gap:20px; }
+    .card { background:linear-gradient(180deg,#101a31 0%, #0d1528 100%); border:1px solid rgba(255,255,255,.08); border-radius:22px; padding:22px; }
+    form { display:grid; gap:10px; }
+    input, textarea { width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0f172a; color:white; }
+    button { border:none; border-radius:999px; padding:12px 16px; font-weight:700; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:white; cursor:pointer; }
+    .idea { padding:12px 14px; border-radius:14px; background:rgba(255,255,255,.04); margin-top:10px; }
+    .idea strong { color:#93c5fd; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h2>Startup Hub</h2>
+    <div class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="startups.html">Startups</a>
+      <a href="chat.html">Community Chat</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </div>
+  <div class="shell">
+    <div class="card">
+      <h2>Share your startup idea</h2>
+      <p>Founders can post their next startup vision and attract creators, partners, and collaborators.</p>
+      <form id="startupForm">
+        <input id="title" type="text" placeholder="Startup idea title" required />
+        <textarea id="desc" placeholder="Describe your idea" required></textarea>
+        <button type="submit">Publish Idea</button>
+      </form>
+      <p id="msg" style="color:#93c5fd; margin-top:10px;"></p>
+    </div>
+    <div class="card">
+      <h3>Recent Startup Ideas</h3>
+      <div id="ideasList">
+        <div class="idea"><strong>Community Learning Hub</strong><br />A modern platform connecting mentors and students.</div>
+        <div class="idea"><strong>Freelance Flow</strong><br />A project management hub for independent creatives.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const form=document.getElementById('startupForm');
+    const ideasList=document.getElementById('ideasList');
+    const title=document.getElementById('title');
+    const desc=document.getElementById('desc');
+    const msg=document.getElementById('msg');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      if(!title.value.trim() || !desc.value.trim()) return;
+      const item=document.createElement('div');
+      item.className='idea';
+      item.innerHTML=`<strong>${title.value.trim()}</strong><br />${desc.value.trim()}`;
+      ideasList.prepend(item);
+      msg.textContent='Startup idea published successfully.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

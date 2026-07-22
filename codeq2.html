@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Vintage Boutique</title>
+<style>
+body{margin:0;font-family:Georgia;background:#f7f1e3;color:#4b2e2e}
+header{background:linear-gradient(90deg,#6d1f2f,#b08d57);color:#fff;padding:25px;text-align:center;text-shadow:2px 2px 4px #000;box-shadow:0 4px 12px #555;position:sticky;top:0}
+nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;background:#efe2c5;padding:12px;box-shadow:0 2px 8px #999}
+nav a{text-decoration:none;color:#6d1f2f;font-weight:bold}
+nav a:hover{color:#b22222}
+.search{text-align:center;padding:15px}.search input{width:60%;padding:10px;border-radius:25px;border:2px solid #b08d57;box-shadow:0 2px 8px #aaa}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:25px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 18px rgba(0,0,0,.25);transition:.3s;border:2px solid #d8c3a5}
+.card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 25px rgba(0,0,0,.4)}
+.card img{width:100%;height:250px;object-fit:cover}
+.card h3{text-align:center}
+.price{display:inline-block;margin:8px auto;padding:8px 16px;background:gold;border-radius:20px;box-shadow:0 4px 10px #888;font-weight:bold}
+.actions{display:flex;justify-content:space-around;padding:12px}
+button{background:#6d1f2f;color:#fff;border:none;padding:10px 14px;border-radius:20px;cursor:pointer;box-shadow:0 3px 8px #777}
+button:hover{background:#b22222}
+footer{text-align:center;padding:20px;background:#6d1f2f;color:#fff}
+</style></head><body>
+<header><h1>Vintage Women's Boutique</h1><p>Elegant Traditional Collections</p></header>
+<nav>
+<a href="#">Home</a><a href="#">Sarees</a><a href="#">Lehengas</a><a href="#">Kurtis</a><a href="#">Gowns</a><a href="#">Wedding</a><a href="#">Offers</a><a href="#">Contact</a>
+</nav>
+<div class='search'><input placeholder='Search for dresses...'></div>
+<div class='grid'>
+<div class='card'>
+<img src='https://picsum.photos/seed/dress1/300/350' alt='Kanchipuram Saree'>
+<h3>Kanchipuram Saree</h3><div style='text-align:center'><span class='price'>₹1249</span></div>
+<div class='actions'><button onclick="alert('Added Kanchipuram Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Kanchipuram Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress2/300/350' alt='Banarasi Saree'>
+<h3>Banarasi Saree</h3><div style='text-align:center'><span class='price'>₹1499</span></div>
+<div class='actions'><button onclick="alert('Added Banarasi Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Banarasi Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress3/300/350' alt='Mysore Silk'>
+<h3>Mysore Silk</h3><div style='text-align:center'><span class='price'>₹1749</span></div>
+<div class='actions'><button onclick="alert('Added Mysore Silk to cart!')">Add to Cart</button><button onclick="alert('Viewing Mysore Silk')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress4/300/350' alt='Cotton Saree'>
+<h3>Cotton Saree</h3><div style='text-align:center'><span class='price'>₹1999</span></div>
+<div class='actions'><button onclick="alert('Added Cotton Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Cotton Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress5/300/350' alt='Linen Saree'>
+<h3>Linen Saree</h3><div style='text-align:center'><span class='price'>₹2249</span></div>
+<div class='actions'><button onclick="alert('Added Linen Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Linen Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress6/300/350' alt='Chiffon Saree'>
+<h3>Chiffon Saree</h3><div style='text-align:center'><span class='price'>₹2499</span></div>
+<div class='actions'><button onclick="alert('Added Chiffon Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Chiffon Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress7/300/350' alt='Georgette Saree'>
+<h3>Georgette Saree</h3><div style='text-align:center'><span class='price'>₹2749</span></div>
+<div class='actions'><button onclick="alert('Added Georgette Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Georgette Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress8/300/350' alt='Organza Saree'>
+<h3>Organza Saree</h3><div style='text-align:center'><span class='price'>₹2999</span></div>
+<div class='actions'><button onclick="alert('Added Organza Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Organza Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress9/300/350' alt='Designer Saree'>
+<h3>Designer Saree</h3><div style='text-align:center'><span class='price'>₹3249</span></div>
+<div class='actions'><button onclick="alert('Added Designer Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Designer Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress10/300/350' alt='Printed Saree'>
+<h3>Printed Saree</h3><div style='text-align:center'><span class='price'>₹3499</span></div>
+<div class='actions'><button onclick="alert('Added Printed Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Printed Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress11/300/350' alt='Bridal Lehenga'>
+<h3>Bridal Lehenga</h3><div style='text-align:center'><span class='price'>₹3749</span></div>
+<div class='actions'><button onclick="alert('Added Bridal Lehenga to cart!')">Add to Cart</button><button onclick="alert('Viewing Bridal Lehenga')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress12/300/350' alt='Party Lehenga'>
+<h3>Party Lehenga</h3><div style='text-align:center'><span class='price'>₹3999</span></div>
+<div class='actions'><button onclick="alert('Added Party Lehenga to cart!')">Add to Cart</button><button onclick="alert('Viewing Party Lehenga')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress13/300/350' alt='Anarkali'>
+<h3>Anarkali</h3><div style='text-align:center'><span class='price'>₹4249</span></div>
+<div class='actions'><button onclick="alert('Added Anarkali to cart!')">Add to Cart</button><button onclick="alert('Viewing Anarkali')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress14/300/350' alt='Sharara'>
+<h3>Sharara</h3><div style='text-align:center'><span class='price'>₹4499</span></div>
+<div class='actions'><button onclick="alert('Added Sharara to cart!')">Add to Cart</button><button onclick="alert('Viewing Sharara')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress15/300/350' alt='Kurti Set'>
+<h3>Kurti Set</h3><div style='text-align:center'><span class='price'>₹4749</span></div>
+<div class='actions'><button onclick="alert('Added Kurti Set to cart!')">Add to Cart</button><button onclick="alert('Viewing Kurti Set')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress16/300/350' alt='Salwar Suit'>
+<h3>Salwar Suit</h3><div style='text-align:center'><span class='price'>₹4999</span></div>
+<div class='actions'><button onclick="alert('Added Salwar Suit to cart!')">Add to Cart</button><button onclick="alert('Viewing Salwar Suit')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress17/300/350' alt='Half Saree'>
+<h3>Half Saree</h3><div style='text-align:center'><span class='price'>₹5249</span></div>
+<div class='actions'><button onclick="alert('Added Half Saree to cart!')">Add to Cart</button><button onclick="alert('Viewing Half Saree')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress18/300/350' alt='Indo Western'>
+<h3>Indo Western</h3><div style='text-align:center'><span class='price'>₹5499</span></div>
+<div class='actions'><button onclick="alert('Added Indo Western to cart!')">Add to Cart</button><button onclick="alert('Viewing Indo Western')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress19/300/350' alt='Festive Gown'>
+<h3>Festive Gown</h3><div style='text-align:center'><span class='price'>₹5749</span></div>
+<div class='actions'><button onclick="alert('Added Festive Gown to cart!')">Add to Cart</button><button onclick="alert('Viewing Festive Gown')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress20/300/350' alt='Reception Gown'>
+<h3>Reception Gown</h3><div style='text-align:center'><span class='price'>₹5999</span></div>
+<div class='actions'><button onclick="alert('Added Reception Gown to cart!')">Add to Cart</button><button onclick="alert('Viewing Reception Gown')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress21/300/350' alt='Chikankari'>
+<h3>Chikankari</h3><div style='text-align:center'><span class='price'>₹6249</span></div>
+<div class='actions'><button onclick="alert('Added Chikankari to cart!')">Add to Cart</button><button onclick="alert('Viewing Chikankari')">View</button></div>
+</div><div class='card'>
+<img src='https://picsum.photos/seed/dress22/300/350' alt='Kalamkari'>
+<h3>Kalamkari</h3><div style='text-align:center'><span class='price'>₹6499</span></div>
+<div class='actions'><button onclick="alert('Added Kalamkari to cart!')">Add to Cart</button><button onclick="alert('Viewing Kalamkari')">View</button></div>
+</div></div><footer>© 2026 Vintage Boutique</footer></body></html>
